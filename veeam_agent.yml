@@ -1,5 +1,5 @@
 - name: Run veeam installation
-  hosts: localhost
+  hosts: all
   become: true
   tasks:
   - name: Copy veeam package to /tmp
