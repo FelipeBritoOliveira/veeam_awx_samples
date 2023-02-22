@@ -6,5 +6,8 @@
       copy:
         src: "{{ playbook_dir }}/veeam-release*"
         dest: /tmp/
-    - name: Install Veeam Release
+    - name: Install Veeam repo
       shell: dpkg -i /tmp/veeam-release* && apt-get update
+      
+      - name: Install Veeam Release
+      shell: apt-get install blksnap veeam
