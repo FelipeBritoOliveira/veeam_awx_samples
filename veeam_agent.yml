@@ -1,14 +1,13 @@
 - name: Run veeam installation
   hosts: all
   become: true
-  tasks:
-   - name: Install veeam package
-    shell: dpkg -i /tmp/veeam-release* && apt-get update
-    args:
-      chdir: /tmp
-  - name: Install blksnap and veeam
-    apt:
-      name:
-        - blksnap
-        - veeam
-      state: present
+   tasks:
+    - name: Install Veeam Repository
+      command: dpkg -i ./veeam-release* && apt-get update
+      args:
+        chdir: /tmp
+
+    - name: Install Veeam
+      command: apt-get install blksnap veeam
+      args:
+        chdir: /tmp
