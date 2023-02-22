@@ -1,19 +1,21 @@
-- name: Install Veeam
+---
+- name: Run dpkg and apt-get commands
   hosts: all
-  gather_facts: false
+  become: yes
+  gather_facts: no
 
   tasks:
-    - name: Install Veeam Repository
+    - name: Install veeam-release
       command: dpkg -i ./veeam-release-deb_1.0.8_amd64.deb
       args:
         chdir: /tmp
 
-    - name: Install Veeam
-      command: apt-get install blksnap veeam
+    - name: Install blksnap and veeam
+      command: apt-get install -y blksnap veeam
       args:
         chdir: /tmp
-        
-     - name: Update apt
+
+    - name: Update apt
       command: apt update
       args:
         chdir: /tmp
