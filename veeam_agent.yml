@@ -2,11 +2,7 @@
   hosts: all
   become: true
   tasks:
-  - name: Copy veeam package to /tmp
-    copy:
-      src: /veeam/veeam-release-deb_1.0.8_amd64.deb
-      dest: /tmp/
-  - name: Install veeam package
+   - name: Install veeam package
     shell: dpkg -i /tmp/veeam-release* && apt-get update
     args:
       chdir: /tmp
