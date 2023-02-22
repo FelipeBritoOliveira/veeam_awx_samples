@@ -1,16 +1,15 @@
-- name: Install Veeam Agent
+---
+- name: Install Veeam RPM package
   hosts: all
   become: true
-  vars:
-    veeam_repo_url: "https://repository.veeam.com/backup/linux/agent/veeam-1.0.2.x86_64.repo"
 
   tasks:
-    - name: Add Veeam repository
-      get_url:
-        url: "{{ veeam_repo_url }}"
-        dest: "/etc/yum.repos.d/veeam.repo"
+    - name: Copy Veeam package to target host
+      copy:
+        src: /home/veeam-nosnap-6.0.0.1060-1.el9.x86_64.rpm
+        dest: /tmp/
 
-    - name: Install Veeam Agent
+    - name: Install Veeam package using rpm
       yum:
-        name: veeam
+        name: /tmp/veeam-nosnap-6.0.0.1060-1.el9.x86_64.rpm
         state: present
