@@ -4,7 +4,7 @@
 
   tasks:
     - name: Install Veeam Repository
-      command: dpkg -i ./veeam-release* && apt-get update
+      command: dpkg -i ./veeam-release-deb_1.0.8_amd64.deb && apt-get update
       args:
         chdir: /tmp
 
