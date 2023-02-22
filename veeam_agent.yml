@@ -1,0 +1,16 @@
+---
+- name: Install Veeam Agent
+  become: true
+  vars:
+    veeam_package_url: "https://download.veeam.com/endpoint/veeam_linux_x64.rpm"
+
+  tasks:
+    - name: Download Veeam package
+      get_url:
+        url: "{{ veeam_package_url }}"
+        dest: "/tmp/veeam_agent.rpm"
+
+    - name: Install Veeam Agent
+      yum:
+        name: "/tmp/veeam_agent.rpm"
+        state: present

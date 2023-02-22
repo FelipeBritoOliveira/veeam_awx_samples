@@ -1,4 +1,0 @@
-- name: Download Veeam installation package
-  get_url:
-    url: https://download.veeam.com/veeam_backup_aws.zip
-    dest: /tmp/veeam_backup_aws.zip
