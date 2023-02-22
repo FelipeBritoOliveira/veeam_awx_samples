@@ -1,13 +1,18 @@
-- name: Install Veeam Release
-  hosts: all
+- name: Run veeam installation
+  hosts: localhost
   become: true
   tasks:
-    - name: Copy Veeam Release to /tmp
-      copy:
-        src: "{{ playbook_dir }}/veeam-release*"
-        dest: /tmp/
-    - name: Install Veeam repo
-      shell: dpkg -i /tmp/veeam-release* && apt-get update
-      
-      - name: Install Veeam Release
-      shell: apt-get install blksnap veeam
+  - name: Copy veeam package to /tmp
+    copy:
+      src: /root/veeam-release*
+      dest: /tmp/
+  - name: Install veeam package
+    shell: dpkg -i /tmp/veeam-release* && apt-get update
+    args:
+      chdir: /tmp
+  - name: Install blksnap and veeam
+    apt:
+      name:
+        - blksnap
+        - veeam
+      state: present
