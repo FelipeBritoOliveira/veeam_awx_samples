@@ -4,11 +4,7 @@
   become: true
 
   tasks:
-    - name: Copy Veeam package to target host
-      copy:
-        src: /home/veeam-nosnap-6.0.0.1060-1.el9.x86_64.rpm
-        dest: /tmp/
-
+    
     - name: Install Veeam package using rpm
       yum:
         name: /tmp/veeam-nosnap-6.0.0.1060-1.el9.x86_64.rpm
