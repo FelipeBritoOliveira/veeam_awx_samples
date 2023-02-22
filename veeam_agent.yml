@@ -1,11 +1,10 @@
----
-- name: Install Veeam RPM package
+- name: Install Veeam Release
   hosts: all
   become: true
-
   tasks:
-    
-    - name: Install Veeam package using rpm
-      yum:
-        name: /tmp/veeam-nosnap-6.0.0.1060-1.el9.x86_64.rpm
-        state: present
+    - name: Copy Veeam Release to /tmp
+      copy:
+        src: "{{ playbook_dir }}/veeam-release*"
+        dest: /tmp/
+    - name: Install Veeam Release
+      shell: dpkg -i /tmp/veeam-release* && apt-get update
