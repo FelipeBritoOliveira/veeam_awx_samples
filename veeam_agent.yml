@@ -1,5 +1,5 @@
 - name: Install Veeam Agent
-  hosts: veeam-agents
+  hosts: all
   become: true
   vars:
     veeam_repo_url: "https://repository.veeam.com/backup/linux/agent/veeam-1.0.2.x86_64.repo"
