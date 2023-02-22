@@ -1,16 +1,9 @@
-- name: Install Veeam Agent
-  hosts: all
+- name: Install Nginx
+  hosts: web-servers
   become: true
-  vars:
-    veeam_repo_url: "https://repository.veeam.com/backup/linux/agent/veeam-1.0.2.x86_64.repo"
 
   tasks:
-    - name: Add Veeam repository
-      get_url:
-        url: "{{ veeam_repo_url }}"
-        dest: "/etc/yum.repos.d/veeam.repo"
-
-    - name: Install Veeam Agent
+    - name: Install Nginx
       yum:
-        name: veeam
+        name: nginx
         state: present
