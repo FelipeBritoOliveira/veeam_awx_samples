@@ -1,16 +1,16 @@
 - name: Install Veeam Agent
-  become: true
   hosts: all
+  become: true
   vars:
-    veeam_package_url: "https://download.veeam.com/endpoint/veeam_linux_x64.rpm"
+    veeam_repo_url: "https://repository.veeam.com/backup/linux/agent/veeam-1.0.2.x86_64.repo"
 
   tasks:
-    - name: Download Veeam package
+    - name: Add Veeam repository
       get_url:
-        url: "{{ veeam_package_url }}"
-        dest: "/tmp/veeam_agent.rpm"
+        url: "{{ veeam_repo_url }}"
+        dest: "/etc/yum.repos.d/veeam.repo"
 
     - name: Install Veeam Agent
       yum:
-        name: "/tmp/veeam_agent.rpm"
+        name: veeam
         state: present
