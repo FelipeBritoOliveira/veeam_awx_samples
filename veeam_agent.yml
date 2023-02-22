@@ -1,7 +1,8 @@
-- name: Run veeam installation
+- name: Install Veeam
   hosts: all
-  become: true
-   tasks:
+  gather_facts: false
+
+  tasks:
     - name: Install Veeam Repository
       command: dpkg -i ./veeam-release* && apt-get update
       args:
